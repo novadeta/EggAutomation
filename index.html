@@ -157,6 +157,7 @@
 </div>
 
 
+
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.1.0/paho-mqtt.min.js"></script>
@@ -248,15 +249,6 @@
             const message = e.target.checked ? 'on' : 'off';
             client.publish('kandang_ayam/lamp', message, { qos: 1 });
             console.log(`Lamp command sent: ${message}`);
-        });
-
-
-        // Set timer
-        document.getElementById('set-timer').addEventListener('click', () => {
-            const time = document.getElementById('timer').value;
-            client.publish('kandang_ayam/timer', time, { qos: 1 });
-            console.log(`Timer set command sent: ${time}`);
-            alert('Timer set to ' + time);
         });
 
         // Function to update chart
