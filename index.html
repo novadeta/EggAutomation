@@ -190,10 +190,6 @@
             client.subscribe('kandang_ayam/fan');
             client.subscribe('kandang_ayam/lamp');
             console.log('Connected to MQTT broker');
-
-
-            client.publish('kandang_ayam/fan');
-            client.publish('kandang_ayam/lamp'); 
         });
 
         // Log incoming messages and update the UI accordingly
@@ -340,8 +336,8 @@
             method : "GET"
             }).then(res => res.json())
             .then(data => {
-                startTime.value = data.startTime ?? "00:00"
-                endTime.value = data.endTime ?? "00:00"
+                startTime.value = data?.startTime ?? "00:00"
+                endTime.value = data?.endTime ?? "00:00"
             })
         }
         getDataTime()
@@ -371,11 +367,10 @@
             }).then(res => res.json())
             .then(data => {
                 console.log(data);
-                
-                    startTimeFan.value = data?.startTime ?? "14:00"
-                    endTimeFan.value = data?.endTime ?? "00:00"
+                startTimeFan.value = data?.startTime ?? "14:00"
+                endTimeFan.value = data?.endTime ?? "00:00"
             }).catch(error => {
-                console.error(error);
+                console.log(error);
                 
             })
         }
