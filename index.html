@@ -332,41 +332,51 @@
         const endTime = document.getElementById("end-time-lamp")
         const buttonTime = document.getElementById("button-time-lamp")
         
-        function getDataTime(params) {
-            fetch(`https://7cc5-180-251-235-233.ngrok-free.app/api/schedule/lamp`,{
-                method : "GET"
-            }).then(res => res.text())
+        function getDataTime() {
+            fetch(`${url}/api/schedule/lamp`,{
+                method : "GET",
+                headers: {
+                    "ngrok-skip-browser-warning": "69420"
+                }
+            }).then(res => res.json())
             .then(data => {
-                console.log(data);
-                
-                // startTime.value = data?.startTime ?? "00:00"
-                // endTime.value = data?.endTime ?? "00:00"
+                // console.log(data);
+                startTime.value = data?.startTime ?? "00:00"
+                endTime.value = data?.endTime ?? "00:00"
             })
         }
         getDataTime()
-        function inputDataTime(params) {
+        function inputDataTime() {
             fetch(`${url}/api/schedule/lamp`,{
             method : "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning": "69420"
             },
             body : JSON.stringify({
                 "startTime" : startTime.value,
                 "endTime" : endTime.value,
             })
-            }).then(res => res.json())
+            }).then(res => location.reload())
         }
 
-        buttonTime.addEventListener('click', (e) => inputDataTime())
+        buttonTime.addEventListener('click', function(e){
+            e.preventDefault()
+            inputDataTime()
+        })
+
 
         // Timer Fan
         const startTimeFan = document.getElementById("start-time-fan")
         const endTimeFan = document.getElementById("end-time-fan")
         const buttonTimeFan = document.getElementById("button-time-fan")
 
-        function getDataFan(params) {
+        function getDataFan() {
             fetch(`${url}/api/schedule/fan`,{
-             method : "GET"
+             method : "GET",
+             headers: {
+                "ngrok-skip-browser-warning": "69420"
+            }
             }).then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -377,21 +387,25 @@
                 
             })
         }
-        // getDataFan()
-        function inputDataFan(params) {
+        getDataFan()
+        function inputDataFan() {
             fetch(`${url}/api/schedule/fan`,{
             method : "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning": "69420"
             },
             body : JSON.stringify({
                 "startTime" : startTimeFan.value,
                 "endTime" : endTimeFan.value,
             })
-            }).then(res => res.json())
+            }).then(res => location.reload())
         }
         
-        buttonTimeFan.addEventListener('click', (e) => inputDataFan())
+        buttonTimeFan.addEventListener('click', function (e){
+            e.preventDefault()
+            inputDataFan()
+        })
     </script>
 </body>
 </html>
