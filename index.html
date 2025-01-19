@@ -333,7 +333,7 @@
         const buttonTime = document.getElementById("button-time-lamp")
         
         function getDataTime(params) {
-            fetch(`${url}/api/schedule/lamp`,{
+            fetch(`https://7cc5-180-251-235-233.ngrok-free.app/api/schedule/lamp`,{
                 method : "GET"
             }).then(res => res.text())
             .then(data => {
