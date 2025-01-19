@@ -331,14 +331,15 @@
         const startTime = document.getElementById("start-time-lamp")
         const endTime = document.getElementById("end-time-lamp")
         const buttonTime = document.getElementById("button-time-lamp")
+        
         function getDataTime(params) {
             fetch(`${url}/api/schedule/lamp`,{
             method : "GET"
-            }).then(res => res.json())
-            .then(data => {
-                startTime.value = data?.startTime ?? "00:00"
-                endTime.value = data?.endTime ?? "00:00"
-            })
+            }).then(res => res.text())
+            // .then(data => {
+            //     startTime.value = data?.startTime ?? "00:00"
+            //     endTime.value = data?.endTime ?? "00:00"
+            // })
         }
         getDataTime()
         function inputDataTime(params) {

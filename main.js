@@ -117,7 +117,11 @@ loadScheduleFan()
 
 app.get("/api/schedule/lamp", async (req, res) => {
     const latestSchedule = await Schedule.findOne().sort({createdAt : -1})
-    res.json(latestSchedule)
+    if (latestSchedule) {
+        res.json(latestSchedule);
+    } else {
+        res.status(404).json({ message: "Jadwal lampu tidak ditemukan" });
+    }
 })
 app.post("/api/schedule/lamp", async (req, res) => {
     console.log(req.body);
@@ -129,17 +133,17 @@ app.post("/api/schedule/lamp", async (req, res) => {
 })
 app.get("/api/schedule/fan", async (req, res) => {
     const latestSchedule = await ScheduleFan.findOne().sort({createdAt : -1})
-    res.json(latestSchedule)
+    if (latestSchedule) {
+        res.json(latestSchedule);
+    } else {
+        res.status(404).json({ message: "Jadwal kipas tidak ditemukan" });
+    }
 })
 app.post("/api/schedule/fan", async (req, res) => {
     console.log(req.body);
     const {startTime, endTime} = req.body
     const newSchedule = new ScheduleFan({startTime, endTime})
     await newSchedule.save()
-    // schedule.gracefulShutdown().then(() => {
-    //     console.log("Semua jadwal lama dihapus.");
-    //     loadAndScheduleTasks();
-    // });
     loadScheduleFan()
     res.send("Berhasil mengubah jadwal kipas")
 })
