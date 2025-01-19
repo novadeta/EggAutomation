@@ -326,11 +326,15 @@
             }
         });
 
+
+
+        const url = "https://7cc5-180-251-235-233.ngrok-free.app" 
+
+
         // Timer Lamp
         const startTime = document.getElementById("start-time-lamp")
         const endTime = document.getElementById("end-time-lamp")
         const buttonTime = document.getElementById("button-time-lamp")
-        const url = "http://localhost:3000" 
         function getDataTime(params) {
             fetch(`${url}/api/schedule/lamp`,{
             method : "GET"
