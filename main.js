@@ -124,7 +124,6 @@ app.get("/api/schedule/lamp", async (req, res) => {
     }
 })
 app.post("/api/schedule/lamp", async (req, res) => {
-    console.log(req.body);
     const {startTime, endTime} = req.body
     const newSchedule = new Schedule({startTime, endTime})
     await newSchedule.save()
@@ -140,7 +139,6 @@ app.get("/api/schedule/fan", async (req, res) => {
     }
 })
 app.post("/api/schedule/fan", async (req, res) => {
-    console.log(req.body);
     const {startTime, endTime} = req.body
     const newSchedule = new ScheduleFan({startTime, endTime})
     await newSchedule.save()
