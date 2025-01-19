@@ -165,7 +165,7 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.1.0/paho-mqtt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+    <!-- <script src="../path/to/flowbite/dist/flowbite.min.js"></script> -->
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -334,12 +334,14 @@
         
         function getDataTime(params) {
             fetch(`${url}/api/schedule/lamp`,{
-            method : "GET"
+                method : "GET"
             }).then(res => res.text())
-            // .then(data => {
-            //     startTime.value = data?.startTime ?? "00:00"
-            //     endTime.value = data?.endTime ?? "00:00"
-            // })
+            .then(data => {
+                console.log(data);
+                
+                // startTime.value = data?.startTime ?? "00:00"
+                // endTime.value = data?.endTime ?? "00:00"
+            })
         }
         getDataTime()
         function inputDataTime(params) {
@@ -364,7 +366,7 @@
 
         function getDataFan(params) {
             fetch(`${url}/api/schedule/fan`,{
-            method : "GET"
+             method : "GET"
             }).then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -375,7 +377,7 @@
                 
             })
         }
-        getDataFan()
+        // getDataFan()
         function inputDataFan(params) {
             fetch(`${url}/api/schedule/fan`,{
             method : "POST",
